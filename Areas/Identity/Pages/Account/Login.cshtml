@@ -1,0 +1,85 @@
+﻿@page
+@model LoginModel
+
+@{
+	Layout = null;
+	ViewData["Title"] = "Login";
+}
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+	<title>@ViewData["Title"] - Gerenciamento do Identity</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="~/login/css/style.css" rel="stylesheet" />
+</head>
+<body>
+	<section class="ftco-section">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-md-7 col-lg-5">
+					<div class="wrap">
+						<div class="img" style="background-image: url('@Url.Content("~/login/images/bg-1.jpg")');"></div>
+						<div class="login-wrap p-4 p-md-5">
+							<div class="d-flex">
+								<div class="w-100">
+									<h3 class="mb-4">@ViewData["Title"]</h3>
+								</div>
+								<div class="w-100">
+									<p class="social-media d-flex justify-content-end">
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-facebook"></span></a>
+										<a href="#" class="social-icon d-flex align-items-center justify-content-center"><span class="fa fa-twitter"></span></a>
+									</p>
+								</div>
+							</div>
+							<form id="account" method="post">
+								<div class="form-group mt-3">
+									<input asp-for ="Input.Email" class="form-control" required>
+									<label class="form-control-placeholder" for="username">Usuário</label>
+								</div>
+								<div class="form-group">
+									<input asp-for="Input.Password" id="password-field" class="form-control" required>
+									<label class="form-control-placeholder" for="password">Senha</label>
+									<span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+								</div>
+								<div class="form-group">
+									<button id="login-submit" type="submit" class="form-control btn btn-primary rounded submit px-3">Logar</button>
+								</div>
+								<div class="form-group d-md-flex">
+									<div class="w-50 text-left">
+										<label class="checkbox-wrap checkbox-primary mb-0">
+											Lembrar-me
+											<input class="form-check-input" asp-for="Input.RememberMe" />
+											<span class="checkmark"></span>
+										</label>
+									</div>
+									<div class="w-50 text-md-right">
+										<a id="forgot-password" asp-page="./ForgotPassword">Resetar senha?</a>
+									</div>
+								</div>
+							</form>
+							<p class="text-center">Não é registrado? <a data-toggle="tab" asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Registre-se</a></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <script src="~/login/js/jquery.min.js"></script>
+	<script src="~/login/js/popper.js"></script>
+	<script src="~/login/js/bootstrap.min.js"></script>
+	<script src="~/login/js/main.js"></script>
+
+</body>
+</html>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,71 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IdentityUser
+
+@{
+    ViewData["Title"] = "Editar usuário";
+}
+
+<div class="container">
+    <div class="row">
+        <h1>Gerenciamento do Identity</h1>
+        <h4>Editar usuário</h4>
+        <hr />
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="UpdateUser">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input asp-for="Id" class="form-control" hidden />
+                <div class="form-group">
+                    <label asp-for="UserName" class="control-label"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input asp-for="PhoneNumber" id="PhoneNumber" maxlength="15" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LockoutEnabled" class="control-label"></label>
+                    <input asp-for="LockoutEnabled" type="checkbox" />
+                    <span asp-validation-for="LockoutEnabled" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="LockoutEnd" class="control-label"></label>
+                    <input type="date" asp-for="LockoutEnd" class="form-control" />
+                    <span asp-validation-for="LockoutEnd" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="EmailConfirmed" class="control-label"></label>
+                    <input asp-for="EmailConfirmed" type="checkbox" />
+                    <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumberConfirmed" class="control-label"></label>
+                    <input asp-for="PhoneNumberConfirmed" type="checkbox" />
+                    <span asp-validation-for="PhoneNumberConfirmed" class="text-danger"></span>
+                </div>
+                <br />
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">
+                        <i class="fa fa-check"></i>
+                        Salvar
+                    </button> |
+                    <a class="btn btn-primary" href="@Url.Action("Index", "Identity")"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

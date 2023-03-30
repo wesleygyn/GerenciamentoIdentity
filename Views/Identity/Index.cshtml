@@ -1,0 +1,72 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityUser>
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpAcc
+
+@{
+    var listPermissionUser = httpAcc.HttpContext.Request.Cookies["Permission"];
+    ViewData["Title"] = "Listagem de usuários";
+}
+
+<div class="container">
+    <div class="row">
+        <h1>Gerenciamento do Identity</h1>
+        <h4>Listagem de usuários</h4>
+        <hr />
+    </div>
+    <div class="row">
+
+        <div class="card">
+            <div id="viewAll" class="card-body table-responsive">
+                <p @(listPermissionUser.Contains("Admin") ? "" : "hidden")>
+                    <a class="btn btn-primary" href="@Url.Action("CreateUser", "Identity")"><i class="fa-solid fa-plus"></i> Novo</a>
+                </p>
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>
+                                Usuário
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Email confirmado
+                            </th>
+                            <th>
+                                Telefone confirmado
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.EmailConfirmed)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumberConfirmed)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("UpdateUser", "Identity", new { id = @item.Id })" title="Editar" @(listPermissionUser.Contains("SuperAdmin") ? "" : "hidden")><strong style="color: #FFA500;"><i class="fa-solid fa-square-pen"></i></strong></a> &nbsp;
+                                    <a href="@Url.Action("ResetPassword", "Identity", new { id = @item.Id })" title="Alterar senha" @(listPermissionUser.Contains("Admin") ? "" : "hidden")><strong style="color: #1E90FF;"><i class="fa-solid fa-eraser"></i></strong></a> &nbsp;
+                                    <a href="@Url.Action("UserInRole", "Identity", new { id = @item.Id })" title="Administrar permissões" @(listPermissionUser.Contains("SuperAdmin") ? "" : "hidden")><strong style="color: #778899;"><i class="fas fa-wrench"></i></strong></a> &nbsp;
+                                    <a href="@Url.Action("DeleteUser", "Identity", new { id = @item.Id })" onclick="return confirm('Deseja realmente deletar o usuário: @item.UserName?');" title="Deletar usuário" @(listPermissionUser.Contains("SuperAdmin") ? "" : "hidden")><strong style="color: #DC143C;"><i class="fa-solid fa-trash-can"></i></strong></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
