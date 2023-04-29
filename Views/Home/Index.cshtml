@@ -1,4 +1,6 @@
-﻿@{
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor httpAcessor
+
+@{
     ViewData["Title"] = "Página inicial";
 }
 
@@ -6,3 +8,32 @@
     <h1 class="display-4">Bem vindo</h1>
     <p>Aplicação com gerenciamento de usuários usando Identity</a>.</p>
 </div>
+
+<br />
+
+<hr />
+
+<h1>Informações do acesso</h1>
+
+<hr />
+
+<strong>Usuário logado:</strong><br />
+<p>@ViewData["UsuarioLogado"]</p>
+
+<hr />
+
+<strong>Nome do dispositivo:</strong>
+<br />
+<p>@ViewData["HostName"]</p>
+
+<hr />
+
+<strong>Ips do dispositivo:</strong>
+<br />
+
+@foreach (var ip in ViewBag.ListaIps)
+{
+	<p>@ip</p>
+}
+
+<hr />

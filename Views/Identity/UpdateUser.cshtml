@@ -1,68 +1,232 @@
 ﻿@using Microsoft.AspNetCore.Identity;
-@model IdentityUser
+@model Usuario
 
 @{
     ViewData["Title"] = "Editar usuário";
 }
 
-<div class="container">
-    <div class="row">
-        <h1>Gerenciamento do Identity</h1>
-        <h4>Editar usuário</h4>
-        <hr />
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-action="UpdateUser">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input asp-for="Id" class="form-control" hidden />
-                <div class="form-group">
-                    <label asp-for="UserName" class="control-label"></label>
-                    <input asp-for="UserName" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Email" class="control-label"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PhoneNumber" class="control-label"></label>
-                    <input asp-for="PhoneNumber" id="PhoneNumber" maxlength="15" class="form-control" />
-                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="LockoutEnabled" class="control-label"></label>
-                    <input asp-for="LockoutEnabled" type="checkbox" />
-                    <span asp-validation-for="LockoutEnabled" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="LockoutEnd" class="control-label"></label>
-                    <input type="date" asp-for="LockoutEnd" class="form-control" />
-                    <span asp-validation-for="LockoutEnd" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="EmailConfirmed" class="control-label"></label>
-                    <input asp-for="EmailConfirmed" type="checkbox" />
-                    <span asp-validation-for="EmailConfirmed" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="PhoneNumberConfirmed" class="control-label"></label>
-                    <input asp-for="PhoneNumberConfirmed" type="checkbox" />
-                    <span asp-validation-for="PhoneNumberConfirmed" class="text-danger"></span>
-                </div>
-                <br />
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">
-                        <i class="fa fa-check"></i>
-                        Salvar
-                    </button> |
-                    <a class="btn btn-primary" href="@Url.Action("Index", "Identity")"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
-                </div>
-            </form>
+<form asp-action="UpdateUser">
+
+    <div class="row" style="padding-bottom: 15px;">
+        <div class="col-md-6 text-start">
+            <div class="form-group">
+
+                <button name="submit" value="submit" type="submit" class="btn btn-success">
+                    <i class="fa fa-check"></i> Salvar
+                </button>
+
+                <a asp-action="Index" name="Voltar" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">Editar usuário</div>
+                <br />
+                <div class="bodyTab">
+                    <div id="principal" class="header-tab card-body">
+
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input asp-for="Id" class="form-control" hidden/>
+                        <input asp-for="EmailConfirmed" type="checkbox" hidden />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Documento" class="control-label"></label>
+                                    <input asp-for="Documento" class="form-control" />
+                                    <span asp-validation-for="Documento" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Nome" class="control-label"></label>
+                                    <input asp-for="Nome" class="form-control" />
+                                    <span asp-validation-for="Nome" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group form-check">
+                                    <label asp-for="Sexo" class="control-label"></label>
+                                    <br />
+                                    @Html.RadioButtonFor(model => model.Sexo, true) <font>Masculino&ensp;</font>
+                                    @Html.RadioButtonFor(model => model.Sexo, false) <font>Feminino</font><br />
+                                    <span asp-validation-for="Sexo" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Ativo" class="control-label"></label>
+                                    <input asp-for="Ativo" type="checkbox" />
+                                    <span asp-validation-for="Ativo" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Matricula" class="control-label"></label>
+                                    <input asp-for="Matricula" class="form-control" />
+                                    <span asp-validation-for="Matricula" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Telefone" class="control-label"></label>
+                                    <input asp-for="Telefone" class="form-control" />
+                                    <span asp-validation-for="Telefone" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Admissao" class="control-label"></label>
+                                    <input type="date" asp-for="Admissao" class="form-control" />
+                                    <span asp-validation-for="Admissao" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Nascimento" class="control-label"></label>
+                                    <input type="date" asp-for="Nascimento" class="form-control" />
+                                    <span asp-validation-for="Nascimento" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Cep" class="control-label"></label>
+                                    <input asp-for="Cep" class="form-control" id="cep" />
+                                    <span asp-validation-for="Cep" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Logradouro" class="control-label"></label>
+                                    <input asp-for="Logradouro" class="form-control" id="rua" />
+                                    <span asp-validation-for="Logradouro" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="Ibge" class="control-label"></label>
+                                    <input asp-for="Ibge" class="form-control" id="ibge" />
+                                    <span asp-validation-for="Ibge" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label asp-for="Numero" class="control-label"></label>
+                                    <input asp-for="Numero" class="form-control" />
+                                    <span asp-validation-for="Numero" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Complemento" class="control-label"></label>
+                                    <input asp-for="Complemento" class="form-control" />
+                                    <span asp-validation-for="Complemento" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="Bairro" class="control-label"></label>
+                                    <input asp-for="Bairro" class="form-control" id="bairro" />
+                                    <span asp-validation-for="Bairro" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Municipio" class="control-label"></label>
+                                    <input asp-for="Municipio" class="form-control" id="cidade" />
+                                    <span asp-validation-for="Municipio" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div class="form-group">
+                                    <label asp-for="Uf" class="control-label"></label>
+                                    <input asp-for="Uf" class="form-control" id="uf" />
+                                    <span asp-validation-for="Uf" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label asp-for="UsuarioSistema" class="control-label"></label><br />
+                                    <input asp-for="UsuarioSistema" type="checkbox" />
+                                    <span asp-validation-for="UsuarioSistema" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" class="form-control" id="email" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label asp-for="LockoutEnabled" class="control-label"></label><br />
+                                    <input asp-for="LockoutEnabled" type="checkbox" />
+                                    <span asp-validation-for="LockoutEnabled" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group" id="DataBloqueio">
+                                    <label asp-for="LockoutEnd" class="control-label"></label>
+                                    <input type="date" asp-for="LockoutEnd" class="form-control" />
+                                    <span asp-validation-for="LockoutEnd" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
 
 @section Scripts {
     @{

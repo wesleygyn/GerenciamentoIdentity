@@ -3,7 +3,7 @@ using System.Xml.Linq;
 
 namespace GerenciamentoIdentity.Models.ViewModels
 {
-    public class UserManagerViewModel
+    public class UpdateUserManagerViewModel
     {
         [Display(Name = "Código")]
         public string Id { get; set; }
@@ -23,16 +23,6 @@ namespace GerenciamentoIdentity.Models.ViewModels
         [StringLength(15, ErrorMessage = "O {0} deve ter pelo menos {2} e no máximo {1} caracteres.", MinimumLength = 8)]
         [Display(Name = "Telefone")]
         public string PhoneNumber { get; set; }
-
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Senha")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirmação da senha")]
-        [Compare("Password", ErrorMessage = "A senha e a senha de confirmação não correspondem.")]
-        public string ConfirmPassword { get; set; }
 
         [Display(Name = "Confirmar email")]
         public bool EmailConfirmed { get; set; }

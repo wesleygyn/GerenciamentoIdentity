@@ -15,17 +15,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using GerenciamentoIdentity.Seeds;
+using GerenciamentoIdentity.Models;
 
 namespace GerenciamentoIdentity.Areas.Identity.Pages.Account
 {
     public class LoginModel : PageModel
     {
-		private readonly UserManager<IdentityUser> _userManager;
+		private readonly UserManager<Usuario> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
-		private readonly SignInManager<IdentityUser> _signInManager;
+		private readonly SignInManager<Usuario> _signInManager;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<IdentityUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(UserManager<Usuario> userManager, RoleManager<IdentityRole> roleManager, SignInManager<Usuario> signInManager, ILogger<LoginModel> logger)
         {
 			_userManager = userManager;
 			_roleManager = roleManager;
@@ -91,10 +92,10 @@ namespace GerenciamentoIdentity.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-			await DefaultRoles.SeedAsync(_userManager, _roleManager);
-			await DefaultUsers.SeedSuperAdminAsync(_userManager, _roleManager);
+            //await DefaultRoles.SeedAsync(_userManager, _roleManager);
+            //await DefaultUsers.SeedSuperAdminAsync(_userManager, _roleManager);
 
-			if (!string.IsNullOrEmpty(ErrorMessage))
+            if (!string.IsNullOrEmpty(ErrorMessage))
             {
                 ModelState.AddModelError(string.Empty, ErrorMessage);
             }

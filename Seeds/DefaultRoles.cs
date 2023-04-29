@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 using GerenciamentoIdentity.Constants;
+using GerenciamentoIdentity.Models;
 
 namespace GerenciamentoIdentity.Seeds
 {
     public static class DefaultRoles
     {
-        public static async Task SeedAsync(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+        public static async Task SeedAsync(UserManager<Usuario> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (await roleManager.RoleExistsAsync("SuperAdmin") == false)
             {
